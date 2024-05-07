@@ -31,7 +31,8 @@ def downloader():
 
     def thumbnailor(yt_module, diractory):
         re_subed = re.sub(r'[:?|/"]', '', yt_module.title)
-        thumb_url = yt_module.thumbnail_url.replace('sddefault', 'maxresdefault')
+        #thumb_url = yt_module.thumbnail_url.replace('sddefault', 'maxresdefault')
+        thumb_url = yt.thumbnail_url.replace('720', '1080')
         thumb_name = diractory + '/thumbnail/' + re_subed + '.jpg'
         urllib.request.urlretrieve(thumb_url, thumb_name)
 
