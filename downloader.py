@@ -8,10 +8,11 @@ import urllib.request
 
 audio_dir = './audio/'
 video_dir = './video/'
+modes = sys.argv[1]
 url = sys.argv[2]
+
 yt = YouTube(url)
 
-modes = sys.argv[1]
 if modes == 'audio' or modes == 'a':
     def MP4toMP3(file):
         file_name = os.path.splitext(file)
@@ -25,7 +26,8 @@ if modes == 'audio' or modes == 'a':
     video.download(audio_dir)
 
     re_subed = re.sub(r'[:?|/"]', '', yt.title)
-    thumb_url = yt.thumbnail_url.replace('sddefault', 'maxresdefault')
+    #thumb_url = yt.thumbnail_url.replace('sddefault', 'maxresdefault')
+    thumb_url = yt.thumbnail_url.replace('720', '1080')
     thumb_name = audio_dir + '/thumbnail/' + re_subed + '.jpg'
     urllib.request.urlretrieve(thumb_url, thumb_name)
     print('download done.')
@@ -42,11 +44,11 @@ if modes == 'video' or modes == 'v':
     video.download(video_dir)
 
     re_subed = re.sub(r'[:?|/"]', '', yt.title)
-    thumb_url = yt.thumbnail_url.replace('sddefault', 'maxresdefault')
+    #thumb_url = yt.thumbnail_url.replace('sddefault', 'maxresdefault')
+    thumb_url = yt.thumbnail_url.replace('720', '1080')
     thumb_name = video_dir + '/thumbnail/' + re_subed + '.jpg'
     urllib.request.urlretrieve(thumb_url, thumb_name)
     print('download done.')
-
 
 
 if(yt.length%60 < 10):
